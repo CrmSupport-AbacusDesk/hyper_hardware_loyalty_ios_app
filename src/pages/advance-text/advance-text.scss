@@ -1,0 +1,25 @@
+page-advance-text {
+    
+    ul{
+        list-style: none;
+    }
+    
+    .about-logo {
+        text-align: center;
+        img{
+           height: 100px;
+        }
+    }
+    
+    .map-content{
+        h2{
+            font-size: 14px;
+            margin: 10px 10px 10px 20px !important;
+            color: #000;
+            border-bottom: 2px solid #006cb2;
+            display: inline-block;
+            padding-bottom: 1px !important;
+        }
+    }
+    
+}

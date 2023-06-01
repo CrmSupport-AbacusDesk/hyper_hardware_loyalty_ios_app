@@ -1,0 +1,113 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Gift Request Status' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="margin-padding">
+        <div class="phone">
+            <div class="phone-head" style="display: inherit;">
+                <h1>{{gift_detail.gift_title}}</h1>
+                <h1 class="point_value">{{karigar_gift.gift_points}} PT</h1>
+                
+            </div>
+            <ion-slides>
+                <ion-slide *ngFor="let row of giftimg">
+                    <img [src]="upload_url+row.image_name">
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <div class="specification mt10" *ngIf="gift_detail.gift_specification != ''">
+            <div><Strong>{{'Specification' | translate}} :</Strong> <div [innerHTML]="gift_detail.gift_specification"> </div></div>
+        </div>
+        
+        <div class="shipped-detail mt16" >
+            <div>
+                <div class="content">
+                    <p>{{'Reward Points' | translate}}</p>
+                    <h1>{{karigar_gift.actual_points}}</h1> 
+                </div>
+                <div class="content">
+                    <p>{{'Gift Status' | translate}}</p>
+                    <h1 class="{{karigar_gift.gift_status }}">{{karigar_gift.gift_status}}</h1> 
+                </div>
+                <!-- <div class="content">
+                    <p>{{'Bank Name' | translate}}</p>
+                    <h1>{{karigar_gift.bank_name | titlecase}}</h1> 
+                </div>
+                <div class="content" >
+                    <p>{{'Account No.' | translate}}</p>
+                    <h1>{{karigar_gift.account_no}}</h1>
+                </div>
+                <div class="content" >
+                    <p>{{'IFSC Code' | translate}}</p>
+                    <h1>{{karigar_gift.ifsc_code}}</h1>
+                </div> -->
+                <div class="content" *ngIf="karigar_gift.receive_status">
+                    <p>{{'Receive Status' | translate}}</p>
+                    <h1 class="{{karigar_gift.receive_status}}">{{karigar_gift.receive_status}}</h1>
+                </div>
+                <ng-container *ngIf="shipped_detail  != null">
+                    <div class="content" *ngIf="shipped_detail.payment_mode">
+                        <p>{{'Payment Mode' | translate}}</p>
+                        <h1>{{shipped_detail.payment_mode}}</h1>
+                    </div>
+                    <div class="content" *ngIf="shipped_detail.transaction_no">
+                        <p>{{'Transaction No.' | translate}}</p>
+                        <h1>{{shipped_detail.transaction_no}}</h1>
+                    </div>
+                    <div class="content" *ngIf="shipped_detail.transfer_date">
+                        <p>{{'Transfer Date' | translate}}</p>
+                        <h1>{{shipped_detail.transfer_date | date : 'dd MMM yyyy'}}</h1>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <!-- <div class="shipped-detail" >
+            <div *ngIf="shipped_detail.shipped_type">
+                <div class="content">
+                    <p>{{'Shipped by' | translate}}</p>
+                    <h1>{{shipped_detail.shipped_type}}</h1> 
+                </div>
+                <div class="content" >
+                    <p>{{'Estimate delivery Date' | translate}}</p>
+                    <h1>{{shipped_detail.estimated_date}}</h1>
+                </div>
+                <div class="content">
+                    <p>{{'Shipping information' | translate}}</p>
+                    <h1 [innerHTML]="shipped_detail.shipping_information" (click)="goto_link(shipped_detail.shipping_information)" ></h1>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="shipped-detail mt10" >
+            <div class="content edit-content">
+                <p>{{'Shipping address' | translate}}</p>
+                <a *ngIf="!shipped_detail.shipped_type && edit=='' && karigar_gift.gift_status=='Pending'" class="edit-field" (click)="edit='1'">
+                    <i class="material-icons">create</i>
+                </a>
+                <h1 *ngIf="edit==''">{{karigar_gift.shipping_address}}</h1>
+                <div *ngIf="edit=='1'">
+                    <textarea palceholder="Shipping address" name="shipping_address " #shipping_address ="ngModel" [(ngModel)]="karigar_gift.shipping_address" ></textarea>
+                    <button ion-item class="cs-btn btn-radius mb0 mt10" [disabled]="karigar_gift.shipping_address==''" (click)="editAddress()">Save</button>
+                </div>
+            </div>
+        </div> -->
+        
+        <div class="chatus" *ngIf="karigar_gift.gift_status == 'Pending'">
+            {{'Changed your mind? Write to us' | translate}}
+            <a (click)="openChat()">{{'Chat with us' | translate}}</a>
+            {{'to cancel this gift redeem request.' | translate}}
+        </div>
+        
+        
+        <div class="fix-btn" *ngIf="receive_status == 'Transfer'">
+            <button ion-item class="cs-btn btn-radius mb0" (click)="recvConfirmation()">{{'Click here if you recieve' | translate}}</button>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer>
+    
+</ion-footer>
+<!-- {{gift_detail.gift_specification}} -->

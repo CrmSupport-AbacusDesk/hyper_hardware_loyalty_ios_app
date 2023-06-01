@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{offer_detail.title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="{{'Pull to refresh' | translate}}" refreshingSpinner="circles" refreshingText="{{'Refreshing...' | translate}}">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <!-- <div class="fix"></div> -->
+    <div class="bg-banner">
+        <img src="{{uploadUrl + offer_detail.offer_banner}}">
+    </div>
+    <div class="content-padding">
+        <div class="offer pb0">
+            <div class="offer-detail wp100">
+                <h1>{{offer_detail.title}}</h1>
+                <p><span>{{'Balance Points' | translate}} : </span>{{offer_balance || 0}}</p>
+                <p><span>{{'Valid Upto' | translate}} :</span> {{offer_detail.end_date | date:'d MMMM y'}}</p>
+            </div>
+        </div>
+
+        <div class="terms">
+            <a class="mr10" (click)="goOntermsPage(offer_detail.id, 'description')">{{'Description' | translate}}</a>
+            <a (click)="goOntermsPage(offer_detail.id, 'term_condition')">{{'Terms & Conditions' | translate}}</a>
+        </div>
+    </div>
+
+    <div class="listing mt0">
+        <!-- <div class="profile-detail point-detail" *ngIf="offer_detail.term_image!='' || offer_detail.hin_term_image!=''" (click)="viewDetail()">
+            <div class="deflex">
+                <ul>
+                    <li class="refcode">
+                        <h1>{{'A D Detail' | translate}}</h1>
+                        <i class="material-icons">arrow_right_alt</i>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+
+        <div class="gift-list" *ngFor="let list of gift_list;let i=index" (click)="goOnGiftDetail(list.id)" [ngClass]="{'verified' : list.coupon_points <= offer_balance}">
+            <div class="list-item"  >
+                <div class="head-detail">
+                    <div class="head">
+                        <h1></h1>
+                        <span>{{'Points' | translate}} <strong>{{list.coupon_points}}</strong></span>
+                        <p> {{list.gift_title}}</p>
+                    </div>
+                </div>  
+                <div class="product-img">
+                    <!-- <img src="{{uploadUrl+list.image_name}}"> -->
+                    <div class="slide-image" *ngIf="list.length != ''">
+                        <ion-slides  autoplay="1000" loop="true" speed="1000">
+                            <ion-slide *ngFor="let row of list.gift_images" tappable (click) ="goofferdetailpage(row.id)">
+                                <img [src]="uploadUrl+row.image_name"  >
+                            </ion-slide>
+                        </ion-slides>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="flag!=1">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'Loading more data...' | translate}}">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+
+
+</ion-content>

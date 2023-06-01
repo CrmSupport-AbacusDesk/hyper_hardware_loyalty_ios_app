@@ -1,0 +1,56 @@
+page-home {
+    
+    .notification-badge{
+        position: absolute;
+        top: 0;
+        right: -6px;
+        border-radius: 18px;
+        font-size: 11px;
+        padding: 2px;
+        background: #ff0000;
+    }
+   
+    .company-logo{
+        display: flex;
+
+        img{
+            // width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+    }
+
+     .share-text{
+        font-size: 11px;
+        text-transform: capitalize;
+    }
+
+    .h50 {
+        height: 60px !important;
+    }
+
+    .content-md {
+        color: #fff;
+    }
+}
+// .button_css{
+//     position: relative; 
+//     right: 12px;
+
+
+//     .notification{
+//         color: #c8771b;
+//         font-size: 32px;
+//         background: #f8f8f8;
+//     } 
+    
+// }
+
+.notification-icon{
+    font-size:24px;
+    color: #fff;
+}
+
+
+
+

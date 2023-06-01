@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>aboutus-modal</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="main-modal">
+        <div class="modal-box">
+            <div class="success-img"><img src="assets/imgs/sucess.gif"></div>
+            <h3>{{userType}}{{' Registration Request Sent Successfully!' | translate}}</h3>
+            <p>{{'We will take 48 business hours to process your registration request. We will send you a notification as soon as your profile is verified' | translate}}.</p>
+            <p>{{'You can also contact us on our helpline number' | translate}}  <a href="tel:9501501149">9501501149</a> {{'or' | translate}}</p>
+            <p>{{'You can also mail us at' | translate}}  <a href="mailto:info@hyperdoorclosing.com">info@hyperdoorclosing.com</a></p>
+            <div style="margin:16px -16px 0px -16px">
+                <button ion-button  full color="success" outline (click)="gotoHomePage()">ok</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

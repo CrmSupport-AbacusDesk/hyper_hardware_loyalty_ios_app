@@ -1,0 +1,18 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Notification' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="main-backgroung">
+    <div class="odd" *ngFor="let row of data_list" style="padding:10px;text-align: justify;">
+        <!-- <h1>{{lang == 'en' ? row.notification : row.hindi_notification}}</h1> -->
+        <h1 style="font-size: 12px;line-height: 16px;overflow: hidden;text-overflow: ellipsis;padding-right: 10px!important;">{{ row.notification }}</h1> 
+    <p style="font-size: 10px;">{{row.date_created}}</p>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'Loading more data...' | translate}}">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

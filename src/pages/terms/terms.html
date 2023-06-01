@@ -1,0 +1,26 @@
+
+<ion-header>
+	<ion-navbar>
+		<ion-title *ngIf="type == 'description'">{{'Description' | translate}}</ion-title>
+		<ion-title *ngIf="type == 'term_condition'">{{'Terms & Conditions' | translate}}</ion-title>
+		
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div>
+		<div class="bg-banner">
+			<img src="{{uploadUrl+terms_detail.offer_banner}}">
+		</div>
+	</div>
+	<ng-container *ngIf="type == 'description'">
+		<div class="terms-text" *ngIf="terms_detail.description">
+			<div [innerHTML]="terms_detail.description">{{terms_detail.description}}</div>
+		</div>
+	</ng-container>
+	<ng-container *ngIf="type == 'term_condition'">
+		<div class="terms-text" *ngIf="terms_detail.terms">
+			<div [innerHTML]="terms_detail.terms">{{terms_detail.terms}}</div>
+		</div>
+	</ng-container>
+</ion-content>

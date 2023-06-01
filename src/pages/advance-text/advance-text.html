@@ -1,0 +1,46 @@
+<ion-header>
+      <ion-navbar>
+            <ion-title>{{'About Us' | translate}}</ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+      
+      <div class="about-logo">
+            <img [src]="profile_data.profile_banner" alt="" >
+      </div>
+      
+      <div class="policy-text" padding [innerHTML]="profile_data.about">
+      </div>
+      <div class="nev-adjust">
+            <!-- <div class="background">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7539.442493335863!2d72.864025!3d19.119881!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xad3d66ac3ede302c!2sPinnacle%20Business%20Park!5e0!3m2!1sen!2sin!4v1657863466110!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div> -->
+            <div class="cs-nevigation">
+                  <div class="map-main" >
+                        <div class="map-content"  >
+                              <h2>{{'Address' | translate}}</h2>
+                              <div class="location" >
+                                    <i class="material-icons">location_on</i>
+                                    <p>27 / 7, Industrial Area Phase-II, Chandigarh-160 002 (India)</p>
+                              </div>
+                              <div class="location  brd-btm">
+                                    <i class="material-icons">phone</i>
+                                    <a href="tel:9501501149">+91 9501501149</a>
+
+                              </div>
+                             
+                              <div class="location" >
+                                    <i class="material-icons">language</i>
+						<a href="https://hyperdoorclosing.com/" style="color: blue;">www.Hyperdoorclosing.com</a>
+                              </div>
+                              <div class="location">
+                                    <i class="material-icons">email</i>
+						<a href="mailto:info@hyperdoorclosing.com">info@hyperdoorclosing.com</a>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            
+      </div>
+</ion-content>

@@ -1,0 +1,49 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Digital catalogues' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+    <!-- <ion-card (click)="openurl(row.pdf)" *ngFor="let row of pdf_name">
+        <img src={{uploadUrl+row.image}}>
+        <div class="card-title">{{row.category_name}}<i class="material-icons">arrow_forward_ios</i></div>
+    </ion-card> -->
+
+    <div class="fix" style="margin-top:40px">
+        <div class="search">
+            <ion-searchbar type='text' placeholder="{{'Search' | translate}}" name='search' #search="ngModel" [(ngModel)]="filter.search" 
+            (ngModelChange)="getProductList(filter.search)"></ion-searchbar>
+        </div>
+    </div>
+    <div class="Product grid-list" >
+        <div ion-item class="bg-product" (click)="goOnProductDetailPage(list.id)" *ngFor="let list of prod_cat_list; let i=index">
+            <div class="thumbnail">
+                <ion-slides class="cs-slide" pager autoplay="1000" speed="1000" loop="true" *ngIf="list.image && list.image.length>2" >
+                    <ion-slide *ngFor="let image of list.image; let i=index">
+                        <img [src]="uploadUrl+image.image_name">
+                    </ion-slide>
+                </ion-slides>
+                <div *ngIf=" list.image.length==1">
+                        <img [src]="uploadUrl+list.image[0].image_name">
+                </div>
+            </div>
+            
+            <div class="errow">
+                <p >{{list.category_name |titlecase}}</p>
+                <i  (click)="goOnProductDetailPage(list.id)" class="material-icons">trending_flat</i>
+            </div>
+        </div>
+    </div>
+    
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+        <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="{{'Loading more data...' | translate}}">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</ion-content>
+

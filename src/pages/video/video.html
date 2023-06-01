@@ -1,0 +1,25 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Product Videos' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding  >
+    <div class="pr16 pl16">
+        <div  class="video" *ngFor="let list of video_list;let i=index">
+            <!-- <iframe [src]="test(list.url)" width="100%" height="180"  frameborder="0"  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+            <iframe [src]="list.url" width="100%" height="180" rameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="video-text" *ngIf="list.desc">
+                {{list.desc}}
+            </div>
+        </div>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+        <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="{{'Loading more data...' | translate}}">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

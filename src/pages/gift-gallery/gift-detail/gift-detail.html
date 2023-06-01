@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Redeem My Points' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="top-nav nav-adjust">
+        <!-- <p>{{gift_detail.title |titlecase}}</p> -->
+        <p>{{'Balance Points' | translate}}</p>
+        <h1>{{offer_balance || 0}}</h1>
+    </div>
+    <div class="margin-padding pb0">
+        <div class="phone">
+            <div class="phone-head mb0">
+             <h1>{{gift_detail.gift_title}}</h1>
+
+                <!-- <h1>{{lang !='en' ? gift_detail.hin_gift_title : gift_detail.gift_title | titlecase}}</h1> -->
+                
+                
+            </div>
+            <div class="phone-img mb0">
+                 <ng-container *ngIf="giftimg?.length">
+                    <ion-slides class="detail"  autoplay="1000" loop="false" speed="1000" dir="rtl">
+                        <ion-slide *ngFor="let row of giftimg">
+                            <img [src]="uploadUrl+row.image_name">
+                      </ion-slide>
+                    </ion-slides>
+                </ng-container>
+                
+            </div>
+                <h6 class="point-item">{{gift_detail.coupon_points}} {{'Points' | translate}}</h6>
+        </div>
+        <div class="detail-list">
+            <div class="detail" >
+                <img  class="gift-slide" src="{{uploadUrl + gift_detail.offer_banner}}">
+                <div class="info" (click)="goOnOfferDetailPage(gift_detail.offer_id)">
+                    <h1>{{ gift_detail.title }}</h1>
+                    <!-- <h1>{{lang !='en' ? gift_detail.hin_title : gift_detail.title | titlecase}}</h1> -->
+                    <p><span>{{'Valid Upto' | translate}} :</span> {{gift_detail.end_date | date:'d MMMM y'}}</p>
+                </div>
+            </div>
+            <!-- <h1>Description</h1> -->
+           
+            <div class="product-icon">
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+        </div>
+        <!-- <span [innerHTML]="gift_detail.description"> </span> -->
+        <div class="rating">
+            <i class="material-icons" [ngClass]="{'active':rating_star>=1}">star_rate</i>
+            <i class="material-icons" [ngClass]="{'active':rating_star>=2}">star_rate</i>
+            <i class="material-icons" [ngClass]="{'active':rating_star>=3}">star_rate</i>
+            <i class="material-icons" [ngClass]="{'active':rating_star>=4}">star_rate</i>
+            <i class="material-icons" [ngClass]="{'active':rating_star>=5}">star_rate</i>
+            <p>{{rating_star}} {{'Star' | translate}} - {{gift_detail.votes}} {{'Votes' | translate}} </p>
+        </div>
+        <div class="lorem-text">
+            <Strong>{{'Specification' | translate}} :</Strong> <div [innerHTML]="gift_detail.gift_specification"></div> 
+        </div>
+        
+        
+        
+    </div>
+    <div class="fix-item">
+        <p>{{'Rate a Gift' | translate}}</p>
+        <i class="material-icons" [ngClass]="{'active':star>=1}" (click)="rating('1')">star_rate</i>
+        <i class="material-icons" [ngClass]="{'active':star>=2}" (click)="rating('2')">star_rate</i>
+        <i class="material-icons" [ngClass]="{'active':star>=3}" (click)="rating('3')">star_rate</i>
+        <i class="material-icons" [ngClass]="{'active':star>=4}" (click)="rating('4')">star_rate</i>
+        <i class="material-icons" [ngClass]="{'active':star>=5}" (click)="rating('5')">star_rate</i>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="white">
+        <button ion-item class="cs-btn btn-radius mb0 mt0" (click)="presentCancelPolicyModal1()" *ngIf="offer_balance >= gift_detail.coupon_points" >{{'Send Redeem Request' | translate}}</button>
+        <button style="background-color:gray" ion-item class="cs-btn btn-radius mb0 mt0" (click)="presentCancelPolicyModal()" *ngIf="offer_balance <= gift_detail.coupon_points" >{{'Send Redeem Request' | translate}}</button>
+    </ion-toolbar>
+</ion-footer>
+

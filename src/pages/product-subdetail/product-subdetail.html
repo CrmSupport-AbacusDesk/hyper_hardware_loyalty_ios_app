@@ -1,0 +1,109 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'Product Detail' | translate}} - {{prod_detail.category_name | titlecase}}</ion-title>
+        <!-- <h1>{{prod_detail.product_name | titlecase}}</h1> -->
+        <!-- <p *ngIf="prod_detail.desc!=''"><strong>{{'Description' | translate}}</strong> : {{prod_detail.desc}}</p> -->
+        
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+    <div class="slide-image h200">
+        <!-- zoom="true" -->
+        <ion-slides class="cs-slide" *ngIf="prod_detail.image && prod_detail.image.length>1" [initialSlide]="0" pager autoplay="1000" speed="1000" loop="true">
+            <ion-slide *ngFor="let row of prod_detail.image; let i=index" (click)="viewDetail(row.image_name)">
+                <div class="swiper-zoom-container">
+                    <img [src]="upload_url+row.image_name">
+                </div>
+            </ion-slide>
+        </ion-slides>
+        <div class="swiper-zoom-container" *ngIf="prod_detail.image && prod_detail.image.length==1">
+            <img [src]="upload_url+prod_detail_image[0].image_name">
+        </div>
+    </div>
+    
+    <!-- <div class="fix">
+        <div class="pr-img">
+            <ion-slides class="cs-slide"  pager autoplay="1000" speed="1000" loop="true" *ngIf="prod_detail.image && prod_detail.image.length" >
+                <ion-slide *ngFor="let row of prod_detail.image; let i=index" (click)="viewDetail(row.image_name)">
+                    <img [src]="upload_url+row.image_name">
+                </ion-slide>
+            </ion-slides>
+        </div>
+    </div> -->
+    
+    <div class="item-table">
+        <table>
+            <tr>
+                <td class="w120">Category Name :-</td>
+                <th>{{prod_detail.category_name | titlecase}}</th>
+            </tr>
+            <tr *ngIf="prod_detail.desc!=''">
+                <td>{{'Product Description' | translate}} :-</td>
+                <th>{{prod_detail.desc}}</th>
+            </tr>
+            <!-- <tr>
+                <td>Product Name :-</td>
+                <th>{{prod_detail.product_name | titlecase}}</th>
+            </tr> -->
+            <tr>
+                <td>Product Code :-</td>
+                <th>{{prod_detail.product_code}}</th>
+            </tr>
+            <tr>
+                <td>Product Packaging :-</td>
+                <th>{{prod_detail.size | titlecase}}</th>
+            </tr>
+            <tr>
+                <td>MRP :-</td>
+                <th>&#x20B9; {{prod_detail.mrp | titlecase}}</th>
+            </tr>
+            <tr>
+                <td>Points :-</td>
+                <th>{{prod_detail.karigar_point | titlecase}}</th>
+            </tr>
+            
+           
+        </table>
+    </div>
+
+    <!-- <div class="sizes-table">
+        <table>
+            <tr>
+                <th class="w95">Product Code</th>
+                <th class="w95">Karigar Point</th>
+                <th class="w70">Mrp</th>
+                <th class="w80">Packaging</th>
+                <th class="w200">Description</th>
+            </tr>
+            <tr *ngFor="let item of specification">
+                <td>{{item.product_code}}</td>
+                <td>{{item.karigar_point}}</td>
+                <td>{{item.mrp}}</td>
+                <td>{{item.size}}</td>
+                <td>{{item.desc}}</td>
+            </tr>
+            <tr *ngFor="let item of specification">
+               
+            </tr>
+            </table>
+    </div> -->
+    
+    <!-- <div class="heading line mt0 mb10">
+        <p>Related Products</p>
+    </div>
+    
+    <div class="carousel sm-label-font" *ngIf="assign_prod && assign_prod.length" >
+        <div class="carousel-item" *ngFor="let row of assign_prod; let i=index"  (click)="getProductDetail(row.id)">
+            <div class="img-section">
+                <img [src]="upload_url+row.image_name">
+            </div>
+            <label>{{row.product_name}}</label>
+            <label>{{row.product_code}}</label>
+            <label>{{row.mrp}}</label>
+        </div>
+    </div> -->
+    
+    
+</ion-content>
